@@ -2,7 +2,15 @@ from rest_framework import generics
 
 from vet.models import PetOwner, Pet, PetDate
 
-from .serializers import OwnersListSerializer, OwnersSerializer, PetsListSerializer, PetsSerializer
+from .serializers import (
+    OwnersListSerializer, 
+    OwnersSerializer, 
+    PetsListSerializer, 
+    PetsSerializer,
+    OwnerPetsSerializer,
+    PetOwnerSerializer,
+)
+    
 
 # Create your views here.
 
@@ -48,3 +56,14 @@ class UpdatePetsAPIView(generics.UpdateAPIView):
 class DestroyPetsAPIView(generics.DestroyAPIView):
     queryset = Pet.objects.all()
     serializer_class = PetsSerializer
+
+
+#vista especial
+class RetrieveOwnerPetsAPIView(generics.RetrieveAPIView):
+    queryset = PetOwner.objects.all()
+    serializer_class = OwnerPetsSerializer
+
+
+class RetrievePetsOwnerAPIView(generics.RetrieveAPIView):
+    queryset = Pet.objects.all()
+    serializer_class = PetOwnerSerializer

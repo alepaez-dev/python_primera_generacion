@@ -24,3 +24,32 @@ class PetsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pet
         fields = "__all__"
+
+class OwnerPetsSerializer(serializers.ModelSerializer):
+    # llave foranea
+    pets = PetsListSerializer(many=True)
+    class Meta:
+        model = PetOwner
+        fields = [
+            "id",
+            "first_name",
+            "last_name",
+            "email",
+            "phone",
+            "address",
+            "created_at",
+            "pets",
+        ]
+
+class PetOwnerSerializer(serializers.ModelSerializer):
+    #llave foranea
+    owner = OwnersListSerializer()
+    class Meta:
+        model = Pet
+        fields = [
+            "id",
+            "name",
+            "type",
+            "created_at",
+            "owner",
+        ]
