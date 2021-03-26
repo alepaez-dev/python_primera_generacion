@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # custom apps
     'vet',
+    "api",
+    # installed apps
     'crispy_forms',
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
@@ -132,3 +135,6 @@ STATICFILES_DIRS = [
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = "/vet/owners/"
+LOGOUT_REDIRECT_URL = "/"

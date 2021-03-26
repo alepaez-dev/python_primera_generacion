@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+<h1>Pet Date</h1>
+{% endblock title %}
+
+{% block header %}
+<h1>Pet Date</h1>
+{% endblock header %}
+
+{% block content %}
+<form method="POST">
+  {% csrf_token %}
+  {{ form|crispy }}
+  <button type="submit">Actualizar fecha</button>
+</form>
+{% endblock content %}

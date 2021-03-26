@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>PetsDates</title>
+{% endblock title %}
+
+{% block header %}
+<h1>Pet Date list</h1>
+{% endblock header %}
+
+{% block content %}
+<table>
+  <tr>
+    <th>datetime</th>
+    <th>type</th>
+    <th>pet</th>
+  </tr>
+  {% for petdate in petsdate %}
+  <tr>
+    <td>
+      <a href="{% url 'vet:petsdate_detail' pk=petdate.id %}">
+        {{ petdate.id }}
+      </a>
+    </td>
+    <td>{{ petdate.datetime }}</td>
+    <td>{{ petdate.type }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock content %}

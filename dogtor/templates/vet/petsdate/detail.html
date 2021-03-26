@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Pet Owner</title>
+{% endblock title %}
+
+{% block header %}
+<h1>Pet Date detail</h1>
+{% endblock header %}
+
+{% block content %}
+
+<p><strong>datetime: </strong>{{ petdate.datetime }}</p>
+<p><strong>type: </strong>{{ petdate.type }}</p>
+<p><strong>pet: </strong>{{ petdate.pet }}</p>
+<a type="button" class="btn btn-outline-primary" href="{% url 'vet:petsdate_create' %}?datetime={{petdate.datetime}}">
+  Add Pet
+</a>
+
+
+
+
+{% endblock content %}

@@ -4,9 +4,10 @@ from django.template import loader
 from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import PetOwner, Pet
-from .forms import OwnerForm, PetForm
+from .models import PetOwner, Pet, PetDate
+from .forms import OwnerForm, PetForm, PetsDateForm
 
 # Create your views here.
 def list_pet_owners(request):
@@ -33,19 +34,21 @@ class Owners(View):
 #         context['owners'] = PetOwner.objects.all()
 #         return context
 
-class OwnersList(ListView):
+class OwnersList(LoginRequiredMixin, ListView):
     model = PetOwner
     template_name = "vet/owners/list.html"
     context_object_name = "owners"
+    login_url = reverse_lazy("login")
 
 def test(request):
     print(request.__dict__)
     return HttpResponse("Hello world!!")
 
-class OwnersDetail(DetailView):
+class OwnersDetail(LoginRequiredMixin, DetailView):
     model = PetOwner
     template_name = "vet/owners/detail.html"
     context_object_name = "owner"
+    login_url = reverse_lazy("login")
 
 #clases
 class Test(View):
@@ -55,10 +58,11 @@ class Test(View):
 
 ###Pet
 
-class PetsList(ListView):
+class PetsList(LoginRequiredMixin, ListView):
     model = Pet
     template_name = "vet/pets/list.html"
     context_object_name = "pets"
+    login_url = reverse_lazy("login")
 # class PetsList(TemplateView):
 #     template_name = "vet/pets/list.html"
 
@@ -67,10 +71,11 @@ class PetsList(ListView):
 #         context['pets'] = Pet.objects.all()
 #         return context
 
-class PetsDetail(DetailView):
+class PetsDetail(LoginRequiredMixin, DetailView):
     model = Pet
     template_name = "vet/pets/detail.html"
     context_object_name = "pet"
+    login_url = reverse_lazy("login")
 
 # class PetsDetail(TemplateView):
 #     template_name = "vet/pets/detail.html"
@@ -87,17 +92,19 @@ class PetsDetail(DetailView):
 #         template = loader.get_template("vet/pets/detail.html")
 #         return HttpResponse(template.render(context, request))
 
-class OwnersCreate(CreateView):
+class OwnersCreate(LoginRequiredMixin, CreateView):
     model = PetOwner
     template_name = "vet/owners/create.html"
     form_class = OwnerForm
     success_url = reverse_lazy("vet:owners_list")
+    login_url = reverse_lazy("login")
 
-class PetsCreate(CreateView):
+class PetsCreate(LoginRequiredMixin, CreateView):
     model = Pet
     template_name = "vet/pets/create.html"
     form_class = PetForm
     success_url = reverse_lazy("vet:pets_list")
+    login_url = reverse_lazy("login")
 
     def get_initial(self):
         initial = {}
@@ -105,15 +112,46 @@ class PetsCreate(CreateView):
             initial[queryparam] = self.request.GET[queryparam]
         return initial
       
-class OwnersUpdate(UpdateView):
+class OwnersUpdate(LoginRequiredMixin, UpdateView):
     model = PetOwner
     template_name = "vet/owners/update.html"
     form_class = OwnerForm
     success_url = reverse_lazy("vet:owners_list")
+    login_url = reverse_lazy("login")
 
           
-class PetsUpdate(UpdateView):
+class PetsUpdate(LoginRequiredMixin, UpdateView):
     model = Pet
     template_name = "vet/pets/update.html"
     form_class = PetForm
     success_url = reverse_lazy("vet:pets_list")
+    login_url = reverse_lazy("login")
+
+#PetDate
+
+class PetsDateList(LoginRequiredMixin, ListView):
+    model = PetDate
+    template_name = "vet/petsdate/list.html"
+    context_object_name = "petsdate"
+    login_url = reverse_lazy("login")
+
+class PetsDateCreate(LoginRequiredMixin, CreateView):
+    model = PetDate
+    template_name = "vet/petsdate/create.html"
+    form_class = PetsDateForm
+    success_url = reverse_lazy("vet:petsdate_list")
+    login_url = reverse_lazy("login")
+
+
+class PetsDetail(LoginRequiredMixin, DetailView):
+    model = PetDate
+    template_name = "vet/petsdate/detail.html"
+    context_object_name = "petdate"
+    login_url = reverse_lazy("login")
+          
+class PetsDateUpdate(LoginRequiredMixin, UpdateView):
+    model = PetDate
+    template_name = "vet/petsdate/update.html"
+    form_class = PetsDateForm
+    success_url = reverse_lazy("vet:petsdate_list")
+    login_url = reverse_lazy("login")
