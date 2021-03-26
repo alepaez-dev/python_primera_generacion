@@ -4,35 +4,23 @@ from rest_framework import serializers
 from vet.models import PetOwner, Pet, PetDate
 
 # Serializers define the API representation.
-class OwnersSerializer(serializers.HyperlinkedModelSerializer):
+
+class OwnersListSerializer(serializers.ModelSerializer):
     class Meta:
         model = PetOwner
-        fields = [
-            "id",
-            "first_name",
-            "last_name",
-            "email",
-            "phone",
-            "address",
-            "created_at",
-        ]
+        fields = ["id", "first_name","last_name"]
 
-class PetsSerializer(serializers.HyperlinkedModelSerializer):
+class OwnersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PetOwner
+        fields = "__all__"
+
+class PetsListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pet
-        fields = [
-            "id",
-            "name",
-            "type",
-            "created_at",
-        ]
+        fields = ["id", "name","type"]
 
-class DatesSerializer(serializers.HyperlinkedModelSerializer):
+class PetsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PetDate
-        fields = [
-            "id",
-            "datetime",
-            "type",
-            "created_at",
-        ]
+        model = Pet
+        fields = "__all__"
