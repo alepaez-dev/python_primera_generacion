@@ -8,7 +8,10 @@ from .serializers import (
     PetsListSerializer, 
     PetsSerializer,
     OwnerPetsSerializer,
-    PetOwnerSerializer,
+    PetOwnerDateSerializer,
+    DatesListSerializer,
+    DatesSerializer,
+    DatePetsSerializers,
 )
     
 
@@ -57,6 +60,27 @@ class DestroyPetsAPIView(generics.DestroyAPIView):
     queryset = Pet.objects.all()
     serializer_class = PetsSerializer
 
+# dates
+class ListDatesAPIView(generics.ListAPIView):
+    queryset = PetDate.objects.all().order_by("created_at")
+    serializer_class = DatesListSerializer
+
+class CreateDatesAPIView(generics.CreateAPIView):
+    queryset = PetDate.objects.all()
+    serializer_class = DatesSerializer
+
+class RetrieveDatesAPIView(generics.RetrieveAPIView):
+    queryset = PetDate.objects.all()
+    serializer_class = DatesSerializer
+
+class UpdateDatesAPIView(generics.UpdateAPIView):
+    queryset = PetDate.objects.all()
+    serializer_class = DatesSerializer
+
+class DestroyDatesAPIView(generics.DestroyAPIView):
+    queryset = PetDate.objects.all()
+    serializer_class = DatesSerializer
+
 
 #vista especial
 class RetrieveOwnerPetsAPIView(generics.RetrieveAPIView):
@@ -64,6 +88,10 @@ class RetrieveOwnerPetsAPIView(generics.RetrieveAPIView):
     serializer_class = OwnerPetsSerializer
 
 
-class RetrievePetsOwnerAPIView(generics.RetrieveAPIView):
+class RetrievePetsOwnerDateAPIView(generics.RetrieveAPIView):
     queryset = Pet.objects.all()
-    serializer_class = PetOwnerSerializer
+    serializer_class = PetOwnerDateSerializer
+
+class RetrieveDatesPetAPIView(generics.RetrieveAPIView):
+    queryset = PetDate.objects.all()
+    serializer_class = DatePetsSerializers

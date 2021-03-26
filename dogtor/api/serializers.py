@@ -25,6 +25,19 @@ class PetsSerializer(serializers.ModelSerializer):
         model = Pet
         fields = "__all__"
 
+class DatesListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PetDate
+        fields = [
+            "datetime",
+            "type",
+        ]
+
+class DatesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PetDate
+        fields = "__all__"
+
 class OwnerPetsSerializer(serializers.ModelSerializer):
     # llave foranea
     pets = PetsListSerializer(many=True)
@@ -41,9 +54,10 @@ class OwnerPetsSerializer(serializers.ModelSerializer):
             "pets",
         ]
 
-class PetOwnerSerializer(serializers.ModelSerializer):
+class PetOwnerDateSerializer(serializers.ModelSerializer):
     #llave foranea
     owner = OwnersListSerializer()
+    dates = DatesListSerializer(many=True)
     class Meta:
         model = Pet
         fields = [
@@ -52,4 +66,17 @@ class PetOwnerSerializer(serializers.ModelSerializer):
             "type",
             "created_at",
             "owner",
+            "dates",
+        ]
+
+class DatePetsSerializers(serializers.ModelSerializer):
+    #llave foranea
+    pet = PetsListSerializer()
+    class Meta:
+        model = PetDate
+        fields = [
+            "datetime",
+            "type",
+            "created_at",
+            "pet",
         ]

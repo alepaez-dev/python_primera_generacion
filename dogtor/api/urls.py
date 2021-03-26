@@ -12,7 +12,13 @@ from .views import (
     DestroyOwnersAPIView, 
     DestroyPetsAPIView,
     RetrieveOwnerPetsAPIView,
-    RetrievePetsOwnerAPIView,
+    RetrievePetsOwnerDateAPIView,
+    ListDatesAPIView,
+    CreateDatesAPIView,
+    RetrieveDatesAPIView,
+    UpdateDatesAPIView,
+    DestroyDatesAPIView,
+    RetrieveDatesPetAPIView,
 )
 
 
@@ -29,5 +35,11 @@ urlpatterns = [
     path("pets/create/", CreatePetsAPIView.as_view(), name="create_pets"),
     path("pets/<int:pk>/update/", UpdatePetsAPIView.as_view(), name="update_pets"),
     path("pets/<int:pk>/destroy/", DestroyPetsAPIView.as_view(), name="destroy_pets"),
-    path("pets/<int:pk>/owner/", RetrievePetsOwnerAPIView.as_view(), name="retrieve-pets-owner"),
+    path("pets/<int:pk>/owner/", RetrievePetsOwnerDateAPIView.as_view(), name="retrieve-pets-owner"),
+    path("dates/", ListDatesAPIView.as_view(), name="list_dates"),
+    path("dates/<int:pk>/", RetrieveDatesAPIView.as_view(), name="retrieve_dates"),
+    path("dates/create/", CreateDatesAPIView.as_view(), name="create_dates"),
+    path("dates/<int:pk>/update", UpdateDatesAPIView.as_view(), name="update_dates"),
+    path("dates/<int:pk>/destroy", DestroyDatesAPIView.as_view(), name="destroy_dates"),
+    path("dates/<int:pk>/pet", RetrieveDatesPetAPIView.as_view(), name="retrieve-dates-pet"),
 ]
