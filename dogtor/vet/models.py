@@ -36,7 +36,7 @@ class Pet(models.Model):
         return f"{self.name}, {self.type}"
 
 class Office(models.Model):
-    """Sucursales."""
+    """Offices."""
     alias = models.CharField(max_length=255)
     zipcode = models.CharField(max_length=5)
     address = models.TextField(max_length=1000)
@@ -66,7 +66,7 @@ class PetDate(models.Model):
 
     # Relations
     pet = models.ForeignKey(Pet, on_delete=models.PROTECT, related_name="dates")
-    office = models.ForeignKey(Office, on_delete=models.PROTECT, related_name="dates_offices")
+    office = models.ForeignKey(Office, on_delete=models.PROTECT, related_name="dates")
 
     def __str__(self):
         return f"{self.datetime}, {self.pet.name}, {self.type}"

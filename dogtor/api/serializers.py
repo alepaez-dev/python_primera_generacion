@@ -95,7 +95,7 @@ class OfficesSerializer(serializers.ModelSerializer):
 
 class OfficesDateSerializer(serializers.ModelSerializer):
     #llave foranea
-    dates_offices = DatesListSerializer(many=True)
+    dates = DatesListSerializer(many=True)
     class Meta:
         model = Office
         fields = [
@@ -107,7 +107,7 @@ class OfficesDateSerializer(serializers.ModelSerializer):
             "latitude",
             "phone",
             "created_at",
-            "dates_offices",
+            "dates",
         ]
 
 class PetDatesSerializer(serializers.ModelSerializer):
