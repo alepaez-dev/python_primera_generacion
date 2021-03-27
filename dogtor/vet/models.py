@@ -35,6 +35,20 @@ class Pet(models.Model):
     def __str__(self):
         return f"{self.name}, {self.type}"
 
+class Sucursal(models.Model):
+    """Sucursales."""
+    alias = models.CharField(max_length=255)
+    zipcode = models.CharField(max_length=5)
+    address = models.TextField(max_length=1000)
+    longitude = models.FloatField()
+    latitude = models.FloatField()
+    phone = models.CharField(max_length=20, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    #Relations
+
+    def __str__(self):
+        return f"{self.alias}, {self.zipcode}"
 
 class PetDate(models.Model):
     """Pets date model."""
@@ -52,6 +66,10 @@ class PetDate(models.Model):
 
     # Relations
     pet = models.ForeignKey(Pet, on_delete=models.PROTECT, related_name="dates")
+    sucursal = models.ForeignKey(Sucursal, on_delete=models.PROTECT, related_name="dates_sucursales")
 
     def __str__(self):
         return f"{self.datetime}, {self.pet.name}, {self.type}"
+
+
+

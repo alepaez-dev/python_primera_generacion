@@ -19,6 +19,10 @@ from .views import (
     UpdateDatesAPIView,
     DestroyDatesAPIView,
     RetrieveDatesPetAPIView,
+    ListSucursalsAPIView,
+    CreateSucursalsAPIView,
+    RetrieveSucursalsDateAPIView,
+    RetrieveOwnerPetsDatesAPIView,
 )
 
 
@@ -30,6 +34,7 @@ urlpatterns = [
     path("owners/<int:pk>/update/", UpdateOwnersAPIView.as_view(), name="update_owners"),
     path("owners/<int:pk>/destroy/", DestroyOwnersAPIView.as_view(), name="destroy_owners"),
     path("owners/<int:pk>/pets/", RetrieveOwnerPetsAPIView.as_view(), name="retrieve-owner-pets"),
+    path("owners/<int:pk>/pets_dates/", RetrieveOwnerPetsDatesAPIView.as_view(), name="retrieve-owner-pets-dates"),
     path("pets/", ListPetsAPIView.as_view(), name="list_pets"),
     path("pets/<int:pk>/", RetrievePetsAPIView.as_view(), name="retrieve_pets"),
     path("pets/create/", CreatePetsAPIView.as_view(), name="create_pets"),
@@ -42,4 +47,7 @@ urlpatterns = [
     path("dates/<int:pk>/update", UpdateDatesAPIView.as_view(), name="update_dates"),
     path("dates/<int:pk>/destroy", DestroyDatesAPIView.as_view(), name="destroy_dates"),
     path("dates/<int:pk>/pet", RetrieveDatesPetAPIView.as_view(), name="retrieve-dates-pet"),
+    path("sucursals/", ListSucursalsAPIView.as_view(), name="list_sucursals"),
+    path("sucursals/create/", CreateSucursalsAPIView.as_view(), name="create_sucursals"),
+    path("sucursals/<int:pk>/", RetrieveSucursalsDateAPIView.as_view(), name="retrieve_sucursals"),
 ]
