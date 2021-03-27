@@ -1,7 +1,7 @@
  
 from rest_framework import serializers
 
-from vet.models import PetOwner, Pet, PetDate, Sucursal
+from vet.models import PetOwner, Pet, PetDate, Office
 
 # Serializers define the API representation.
 
@@ -83,21 +83,21 @@ class DatePetsSerializers(serializers.ModelSerializer):
 
 
 #Sucursal
-class SucursalsListSerializer(serializers.ModelSerializer):
+class OfficesListSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Sucursal
+        model = Office
         fields = ["id", "alias","zipcode"]
 
-class SucursalsSerializer(serializers.ModelSerializer):
+class OfficesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Sucursal
+        model = Office
         fields = "__all__"
 
-class SucursalsDateSerializer(serializers.ModelSerializer):
+class OfficesDateSerializer(serializers.ModelSerializer):
     #llave foranea
-    dates_sucursales = DatesListSerializer(many=True)
+    dates_offices = DatesListSerializer(many=True)
     class Meta:
-        model = Sucursal
+        model = Office
         fields = [
             "id",
             "alias",
@@ -107,7 +107,7 @@ class SucursalsDateSerializer(serializers.ModelSerializer):
             "latitude",
             "phone",
             "created_at",
-            "dates_sucursales",
+            "dates_offices",
         ]
 
 class PetDatesSerializer(serializers.ModelSerializer):

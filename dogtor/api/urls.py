@@ -19,9 +19,9 @@ from .views import (
     UpdateDatesAPIView,
     DestroyDatesAPIView,
     RetrieveDatesPetAPIView,
-    ListSucursalsAPIView,
-    CreateSucursalsAPIView,
-    RetrieveSucursalsDateAPIView,
+    ListOfficesAPIView,
+    CreateOfficesAPIView,
+    RetrieveOfficesDateAPIView,
     RetrieveOwnerPetsDatesAPIView,
 )
 
@@ -47,7 +47,7 @@ urlpatterns = [
     path("dates/<int:pk>/update", UpdateDatesAPIView.as_view(), name="update_dates"),
     path("dates/<int:pk>/destroy", DestroyDatesAPIView.as_view(), name="destroy_dates"),
     path("dates/<int:pk>/pet", RetrieveDatesPetAPIView.as_view(), name="retrieve-dates-pet"),
-    path("sucursals/", ListSucursalsAPIView.as_view(), name="list_sucursals"),
-    path("sucursals/create/", CreateSucursalsAPIView.as_view(), name="create_sucursals"),
-    path("sucursals/<int:pk>/", RetrieveSucursalsDateAPIView.as_view(), name="retrieve_sucursals"),
+    path("offices/", ListOfficesAPIView.as_view(), name="list_offices"),
+    path("offices/create/", CreateOfficesAPIView.as_view(), name="create_offices"),
+    path("offices/<int:pk>/", RetrieveOfficesDateAPIView.as_view(), name="retrieve_offices"),
 ]

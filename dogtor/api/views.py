@@ -1,6 +1,6 @@
 from rest_framework import generics
 
-from vet.models import PetOwner, Pet, PetDate, Sucursal
+from vet.models import PetOwner, Pet, PetDate, Office
 
 from .serializers import (
     OwnersListSerializer, 
@@ -12,9 +12,9 @@ from .serializers import (
     DatesListSerializer,
     DatesSerializer,
     DatePetsSerializers,
-    SucursalsListSerializer,
-    SucursalsSerializer,
-    SucursalsDateSerializer,
+    OfficesListSerializer,
+    OfficesSerializer,
+    OfficesDateSerializer,
     OwnerPetsDatesSerializer,
 )
     
@@ -101,18 +101,17 @@ class RetrieveDatesPetAPIView(generics.RetrieveAPIView):
     serializer_class = DatePetsSerializers
 
 #Sucursal
+class ListOfficesAPIView(generics.ListAPIView):
+    queryset = Office.objects.all().order_by("created_at")
+    serializer_class = OfficesListSerializer
 
-class ListSucursalsAPIView(generics.ListAPIView):
-    queryset = Sucursal.objects.all().order_by("created_at")
-    serializer_class = SucursalsListSerializer
+class CreateOfficesAPIView(generics.CreateAPIView):
+    queryset = Office.objects.all()
+    serializer_class = OfficesSerializer
 
-class CreateSucursalsAPIView(generics.CreateAPIView):
-    queryset = Sucursal.objects.all()
-    serializer_class = SucursalsSerializer
-
-class RetrieveSucursalsDateAPIView(generics.RetrieveAPIView):
-    queryset = Sucursal.objects.all()
-    serializer_class = SucursalsDateSerializer
+class RetrieveOfficesDateAPIView(generics.RetrieveAPIView):
+    queryset = Office.objects.all()
+    serializer_class = OfficesDateSerializer
 
 class RetrieveOwnerPetsDatesAPIView(generics.RetrieveAPIView):
     queryset = PetOwner.objects.all()
