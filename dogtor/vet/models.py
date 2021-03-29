@@ -43,6 +43,7 @@ class Office(models.Model):
     longitude = models.FloatField()
     latitude = models.FloatField()
     phone = models.CharField(max_length=20, unique=True)
+    isAvailable = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     #Relations
