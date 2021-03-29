@@ -86,7 +86,7 @@ class DatePetsSerializers(serializers.ModelSerializer):
 class OfficesListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Office
-        fields = ["id", "alias","zipcode"]
+        fields = ["id", "alias","zipcode","isAvailable"]
 
 class OfficesSerializer(serializers.ModelSerializer):
     class Meta:

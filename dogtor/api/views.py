@@ -116,3 +116,12 @@ class RetrieveOfficesDateAPIView(generics.RetrieveAPIView):
 class RetrieveOwnerPetsDatesAPIView(generics.RetrieveAPIView):
     queryset = PetOwner.objects.all()
     serializer_class = OwnerPetsDatesSerializer
+
+#Vista para regresar el filter de IsAvailable
+class RetrieveOfficesFilterIsAvailableAPIView(generics.ListAPIView):
+    serializer_class = OfficesSerializer
+
+    def get_queryset(self):
+        """Filtering with the URL"""
+        isAvailable = self.kwargs["pk"]
+        return Office.objects.filter(isAvailable=isAvailable)

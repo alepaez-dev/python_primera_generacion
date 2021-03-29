@@ -138,3 +138,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = "/vet/owners/"
 LOGOUT_REDIRECT_URL = "/"
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+}
