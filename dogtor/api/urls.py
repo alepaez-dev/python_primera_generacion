@@ -24,6 +24,8 @@ from .views import (
     RetrieveOfficesDateAPIView,
     RetrieveOwnerPetsDatesAPIView,
     RetrieveOfficesFilterIsAvailableAPIView,
+    #Users
+    CreateUsersAPIView,
 )
 
 
@@ -52,4 +54,6 @@ urlpatterns = [
     path("offices/create/", CreateOfficesAPIView.as_view(), name="create_offices"),
     path("offices/<int:pk>/", RetrieveOfficesDateAPIView.as_view(), name="retrieve_offices"),
     path("offices/isAvailable/<str:pk>/",RetrieveOfficesFilterIsAvailableAPIView.as_view(), name="retrieve_offices_isAvailable"),
+    #Users
+    path("users/create/",CreateUsersAPIView.as_view(), name="create_users"),
 ]

@@ -1,5 +1,7 @@
 from rest_framework import generics
 
+from django.contrib.auth.models import User
+
 from vet.models import PetOwner, Pet, PetDate, Office
 
 from .serializers import (
@@ -16,6 +18,8 @@ from .serializers import (
     OfficesSerializer,
     OfficesDateSerializer,
     OwnerPetsDatesSerializer,
+    #Users
+    UsersSerializer,
 )
     
 
@@ -125,3 +129,10 @@ class RetrieveOfficesFilterIsAvailableAPIView(generics.ListAPIView):
         """Filtering with the URL"""
         isAvailable = self.kwargs["pk"]
         return Office.objects.filter(isAvailable=isAvailable)
+
+
+# Users
+
+class CreateUsersAPIView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UsersSerializer

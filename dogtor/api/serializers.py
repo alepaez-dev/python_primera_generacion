@@ -1,6 +1,6 @@
  
 from rest_framework import serializers
-
+from django.contrib.auth.models import User
 from vet.models import PetOwner, Pet, PetDate, Office
 
 # Serializers define the API representation.
@@ -138,3 +138,28 @@ class OwnerPetsDatesSerializer(serializers.ModelSerializer):
             "created_at",
             "pets",
         ]
+
+
+#Users
+
+class UsersSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = [
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "password",
+        ]
+        extra_kwargs = {
+            "password": {
+                "write_only": True
+            }
+        }
+
+    def create(self, validate_data):
+        user = User.objects.create_user(**validate_data)
+
+        return user
