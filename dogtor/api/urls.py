@@ -1,5 +1,7 @@
 from django.urls import path, include
 from rest_framework import routers
+from rest_framework.authtoken import views 
+
 from .views import (
     ListOwnersAPIView, 
     RetrieveOwnersAPIView, 
@@ -47,13 +49,14 @@ urlpatterns = [
     path("dates/", ListDatesAPIView.as_view(), name="list_dates"),
     path("dates/<int:pk>/", RetrieveDatesAPIView.as_view(), name="retrieve_dates"),
     path("dates/create/", CreateDatesAPIView.as_view(), name="create_dates"),
-    path("dates/<int:pk>/update", UpdateDatesAPIView.as_view(), name="update_dates"),
-    path("dates/<int:pk>/destroy", DestroyDatesAPIView.as_view(), name="destroy_dates"),
-    path("dates/<int:pk>/pet", RetrieveDatesPetAPIView.as_view(), name="retrieve-dates-pet"),
+    path("dates/<int:pk>/update/", UpdateDatesAPIView.as_view(), name="update_dates"),
+    path("dates/<int:pk>/destroy/", DestroyDatesAPIView.as_view(), name="destroy_dates"),
+    path("dates/<int:pk>/pet/", RetrieveDatesPetAPIView.as_view(), name="retrieve-dates-pet"),
     path("offices/", ListOfficesAPIView.as_view(), name="list_offices"),
     path("offices/create/", CreateOfficesAPIView.as_view(), name="create_offices"),
     path("offices/<int:pk>/", RetrieveOfficesDateAPIView.as_view(), name="retrieve_offices"),
     path("offices/isAvailable/<str:pk>/",RetrieveOfficesFilterIsAvailableAPIView.as_view(), name="retrieve_offices_isAvailable"),
     #Users
     path("users/create/",CreateUsersAPIView.as_view(), name="create_users"),
+    path("users/login/", views.obtain_auth_token, name="login-users"),
 ]
